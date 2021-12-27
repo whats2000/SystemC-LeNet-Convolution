@@ -59,4 +59,7 @@
       <Filter>資源檔</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
 </Project>

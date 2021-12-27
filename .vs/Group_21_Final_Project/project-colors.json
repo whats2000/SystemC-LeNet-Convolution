@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "483bebe5-0c95-43ea-94a5-64d8cbed9a08": {
+      "ProjectGuid": "483bebe5-0c95-43ea-94a5-64d8cbed9a08",
+      "DisplayName": "Group_21_Final_Project",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "其他檔案",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
