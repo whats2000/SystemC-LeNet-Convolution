@@ -14,9 +14,10 @@ SC_MODULE(Conv) {
 
  int clock_cycle = 0;
  int size = 0;
- int sum = 0;
- int count = 0;
- float kernel[25] = {};
+ DATA_TYPE temp_sum = 0;
+ DATA_TYPE bias = 0;
+ DATA_TYPE kernel[25] = {};
+ DATA_TYPE data[120] = {};
 
  void run();
 

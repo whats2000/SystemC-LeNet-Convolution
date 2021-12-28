@@ -6,11 +6,14 @@ void Conv::run() {
 
   clock_cycle = 0;
   size = 0;
-  sum = 0;
-  count = 0;
+  temp_sum = 0;
+  bias = 0;
 
-  for(int i = 0; i < 25; i++)
+  for (int i = 0; i < 25; i++)
    kernel[i] = 0;
+
+  for (int i = 0; i < 120; i++)
+   data[i] = 0;
  }
  else {
 
