@@ -65,23 +65,18 @@ SC_MODULE(Control) {
  {
   Conv_0 = new Conv("Conv_0");
   Conv_0->clk(clk);
-  Conv_0->rst(rst);
 
   Conv_1 = new Conv("Conv_1");
   Conv_1->clk(clk);
-  Conv_1->rst(rst);
 
   Pool_0 = new Pool("Pool_0");
   Pool_0->clk(clk);
-  Pool_0->rst(rst);
 
   Pool_1 = new Pool("Pool_1");
   Pool_1->clk(clk);
-  Pool_1->rst(rst);
 
   Dens_0 = new Dens("Dens_0");
   Dens_0->clk(clk);
-  Dens_0->rst(rst);
 
   SC_METHOD(run);
   sensitive << clk.pos();
