@@ -10,6 +10,7 @@ SC_MODULE(Dens) {
 
  sc_out < DATA_TYPE > data_out;
  sc_in < DATA_TYPE > data_in;
+ sc_in < int > data_size;
 
  void run();
 
