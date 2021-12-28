@@ -2,3 +2,4 @@
 // 例如函式和巨集的名稱。
 // 如需詳細資訊，請參閱 https://go.microsoft.com/fwlink/?linkid=865984
 #define DATA_TYPE
+#define SC_CTOR(user_module_name) typedef user_module_name SC_CURRENT_USER_MODULE; user_module_name( ::sc_core::sc_module_name )

@@ -33,6 +33,18 @@
     <ClCompile Include="code\ROM.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="code\LeNet_Dens.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LeNet_Pool.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LeNet_Conv.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LeNet_Control.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\clockreset.h">
@@ -51,6 +63,18 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="code\ROM.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LeNet_Conv.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LeNet_Dens.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LeNet_Pool.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LeNet_Control.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

@@ -170,6 +170,10 @@
   <ItemGroup>
     <ClCompile Include="code\clockreset.cpp" />
     <ClCompile Include="code\LeNet.cpp" />
+    <ClCompile Include="code\LeNet_Control.cpp" />
+    <ClCompile Include="code\LeNet_Conv.cpp" />
+    <ClCompile Include="code\LeNet_Dens.cpp" />
+    <ClCompile Include="code\LeNet_Pool.cpp" />
     <ClCompile Include="code\Monitor.cpp" />
     <ClCompile Include="code\RAM.cpp" />
     <ClCompile Include="code\ROM.cpp" />
@@ -179,6 +183,10 @@
     <ClInclude Include="code\clockreset.h" />
     <ClInclude Include="code\define.h" />
     <ClInclude Include="code\LeNet.h" />
+    <ClInclude Include="code\LeNet_Control.h" />
+    <ClInclude Include="code\LeNet_Conv.h" />
+    <ClInclude Include="code\LeNet_Dens.h" />
+    <ClInclude Include="code\LeNet_Pool.h" />
     <ClInclude Include="code\Monitor.h" />
     <ClInclude Include="code\RAM.h" />
     <ClInclude Include="code\ROM.h" />
