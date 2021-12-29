@@ -27,11 +27,9 @@ void Conv::run() {
 
    if (clock_cycle >= 143 && clock_cycle <= 810) {
     if ((clock_cycle - 143) % 28 <= 23) {
-     data_out.write(0);
-
      for (int j = 0; j < 5; j++)
       for (int i = 0; i < 5; i++)
-       temp_sum += data[(clock_cycle - 143 + i + 28 * j) % 140] * kernel[i + 3 * j];
+       temp_sum += data[(clock_cycle - 143 + i + 28 * j) % 140] * kernel[i + 5 * j];
 
      temp_sum += bias;
 
@@ -40,14 +38,9 @@ void Conv::run() {
      data_out.write(temp_sum);
     }
     else
-     data_out.write(1);
+     data_out.write(-1);
    }
-
   }
-
-
   clock_cycle++;
-
-
  }
 }
