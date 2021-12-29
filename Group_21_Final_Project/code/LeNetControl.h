@@ -1,8 +1,8 @@
 #include "systemc.h"
 #include "define.h"
-#include "LeNet_Conv.h"
-#include "LeNet_Dens.h"
-#include "LeNet_Pool.h"
+#include "LeNetConv.h"
+#include "LeNetDens.h"
+#include "LeNetPool.h"
 #include <iostream>
 
 using namespace std;

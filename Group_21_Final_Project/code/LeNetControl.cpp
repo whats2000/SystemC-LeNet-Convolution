@@ -1,4 +1,4 @@
-#include "LeNet_Control.h"
+#include "LeNetControl.h"
 
 void Control::run() {
  if (rst.read()) {

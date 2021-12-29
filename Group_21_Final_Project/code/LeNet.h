@@ -1,6 +1,6 @@
 #include "systemc.h"
 #include "define.h"
-#include "LeNet_Control.h"
+#include "LeNetControl.h"
 #include <iostream>
 
 using namespace std;

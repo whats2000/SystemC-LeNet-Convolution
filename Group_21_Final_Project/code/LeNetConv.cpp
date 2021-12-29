@@ -1,4 +1,4 @@
-#include "LeNet_Conv.h"
+#include "LeNetConv.h"
 
 void Conv::run() {
  if (rst.read()) {
