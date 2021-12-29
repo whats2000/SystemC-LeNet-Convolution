@@ -33,16 +33,16 @@
     <ClCompile Include="code\ROM.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="code\LeNet_Dens.cpp">
+    <ClCompile Include="code\LeNetDens.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="code\LeNet_Pool.cpp">
+    <ClCompile Include="code\LeNetPool.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="code\LeNet_Conv.cpp">
+    <ClCompile Include="code\LeNetConv.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="code\LeNet_Control.cpp">
+    <ClCompile Include="code\LeNetControl.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,16 +65,16 @@
     <ClInclude Include="code\ROM.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="code\LeNet_Conv.h">
+    <ClInclude Include="code\LeNetConv.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="code\LeNet_Dens.h">
+    <ClInclude Include="code\LeNetDens.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="code\LeNet_Pool.h">
+    <ClInclude Include="code\LeNetPool.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="code\LeNet_Control.h">
+    <ClInclude Include="code\LeNetControl.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

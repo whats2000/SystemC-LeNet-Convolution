@@ -89,7 +89,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\systemc-2.3.4_pub_rev_20190614\src</AdditionalIncludeDirectories>
-      <RuntimeTypeInfo>是</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions> /vmg /D_CRT_SECURE_NO_DEPRECATE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\systemc-2.3.4_pub_rev_20190614\src</AdditionalIncludeDirectories>
-      <RuntimeTypeInfo>是</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +132,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\systemc-2.3.4_pub_rev_20190614\src</AdditionalIncludeDirectories>
-      <RuntimeTypeInfo>是</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,7 +153,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\systemc-2.3.4_pub_rev_20190614\src</AdditionalIncludeDirectories>
-      <RuntimeTypeInfo>是</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,10 +170,10 @@
   <ItemGroup>
     <ClCompile Include="code\clockreset.cpp" />
     <ClCompile Include="code\LeNet.cpp" />
-    <ClCompile Include="code\LeNet_Control.cpp" />
-    <ClCompile Include="code\LeNet_Conv.cpp" />
-    <ClCompile Include="code\LeNet_Dens.cpp" />
-    <ClCompile Include="code\LeNet_Pool.cpp" />
+    <ClCompile Include="code\LeNetControl.cpp" />
+    <ClCompile Include="code\LeNetConv.cpp" />
+    <ClCompile Include="code\LeNetDens.cpp" />
+    <ClCompile Include="code\LeNetPool.cpp" />
     <ClCompile Include="code\Monitor.cpp" />
     <ClCompile Include="code\RAM.cpp" />
     <ClCompile Include="code\ROM.cpp" />
@@ -183,10 +183,10 @@
     <ClInclude Include="code\clockreset.h" />
     <ClInclude Include="code\define.h" />
     <ClInclude Include="code\LeNet.h" />
-    <ClInclude Include="code\LeNet_Control.h" />
-    <ClInclude Include="code\LeNet_Conv.h" />
-    <ClInclude Include="code\LeNet_Dens.h" />
-    <ClInclude Include="code\LeNet_Pool.h" />
+    <ClInclude Include="code\LeNetControl.h" />
+    <ClInclude Include="code\LeNetConv.h" />
+    <ClInclude Include="code\LeNetDens.h" />
+    <ClInclude Include="code\LeNetPool.h" />
     <ClInclude Include="code\Monitor.h" />
     <ClInclude Include="code\RAM.h" />
     <ClInclude Include="code\ROM.h" />
