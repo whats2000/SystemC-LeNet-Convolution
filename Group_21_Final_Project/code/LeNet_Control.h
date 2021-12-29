@@ -36,39 +36,41 @@ SC_MODULE(Control) {
  sc_signal < bool > pool_0_rst;
 
  // connect to Dense Submodule 0
- sc_signal < DATA_TYPE > dens_data_out;
- sc_signal < DATA_TYPE > dens_data_in;
- sc_signal < int > dens_data_size;
- sc_signal < bool > dens_rst;
+ sc_signal < DATA_TYPE > dens_0_data_out;
+ sc_signal < DATA_TYPE > dens_0_data_in;
+ sc_signal < int > dens_0_data_size;
+ sc_signal < bool > dens_0_rst;
 
- Conv* Conv_0;
- Pool* Pool_0;
- Dens* Dens_0;
+ Conv* Conv0;
+ Pool* Pool0;
+ Dens* Dens0;
+
+ int clock_cycle = 0;
 
  void run();
 
  SC_CTOR(Control)
  {
-  Conv_0 = new Conv("Conv_0");
-  Conv_0->clk(clk);
-  Conv_0->rst(conv_0_rst);
-  Conv_0->data_out(conv_0_data_out);
-  Conv_0->data_in(conv_0_data_in);
-  Conv_0->data_size(conv_0_data_size);
+  Conv0 = new Conv("Conv_0");
+  Conv0->clk(clk);
+  Conv0->rst(conv_0_rst);
+  Conv0->data_out(conv_0_data_out);
+  Conv0->data_in(conv_0_data_in);
+  Conv0->data_size(conv_0_data_size);
 
-  Pool_0 = new Pool("Pool_0");
-  Pool_0->clk(clk);
-  Pool_0->rst(pool_0_rst);
-  Pool_0->data_out(pool_0_data_out);
-  Pool_0->data_in(pool_0_data_in);
-  Pool_0->data_size(pool_0_data_size);
+  Pool0 = new Pool("Pool_0");
+  Pool0->clk(clk);
+  Pool0->rst(pool_0_rst);
+  Pool0->data_out(pool_0_data_out);
+  Pool0->data_in(pool_0_data_in);
+  Pool0->data_size(pool_0_data_size);
 
-  Dens_0 = new Dens("Dens_0");
-  Dens_0->clk(clk);
-  Dens_0->rst(dens_rst);
-  Dens_0->data_out(dens_data_out);
-  Dens_0->data_in(dens_data_in);
-  Dens_0->data_size(dens_data_size);
+  Dens0 = new Dens("Dens_0");
+  Dens0->clk(clk);
+  Dens0->rst(dens_0_rst);
+  Dens0->data_out(dens_0_data_out);
+  Dens0->data_in(dens_0_data_in);
+  Dens0->data_size(dens_0_data_size);
 
   SC_METHOD(run);
   sensitive << clk.pos();
