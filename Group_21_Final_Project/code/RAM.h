@@ -11,7 +11,7 @@ SC_MODULE( RAM ) {
 	sc_out < DATA_TYPE > data_out;
 	sc_in < DATA_TYPE > data_in;
 	
-	vector < DATA_TYPE > mem;
+	vector < DATA_TYPE > mem = vector < DATA_TYPE > (65536, 0);
 	
 	void read_data();
 	void write_data();

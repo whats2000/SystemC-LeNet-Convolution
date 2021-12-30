@@ -11,7 +11,7 @@ SC_MODULE(ROM) {
  sc_in < sc_uint<16> > addr;
  sc_out < DATA_TYPE > data_out;
 
- vector < DATA_TYPE > mem;
+ vector < DATA_TYPE > mem = vector < DATA_TYPE > (45210, 0);
  void read_data();
 
  SC_CTOR(ROM)
@@ -31,9 +31,10 @@ SC_MODULE(ROM) {
    temp = t_b.c_str();
    mem[i] = temp.to_int();
 #else
-   mem.push_back(t_d);
+   mem[i] = t_d;
 #endif
   }
+
   win.close();
   cout << "done!\n";
 
