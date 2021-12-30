@@ -18,5 +18,7 @@ SC_MODULE(Dens) {
  {
   SC_METHOD(dens_run);
   sensitive << clk.pos();
+
+  dont_initialize();
  }
 };

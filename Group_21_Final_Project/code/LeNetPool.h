@@ -18,5 +18,7 @@ SC_MODULE(Pool) {
  {
   SC_METHOD(pool_run);
   sensitive << clk.pos();
+
+  dont_initialize();
  }
 };

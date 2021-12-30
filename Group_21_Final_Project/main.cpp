@@ -41,7 +41,7 @@ int sc_main(int argc, char* argv[]) {
         );
  m_Monitor(clk, rst, result, out_valid);
 
- sc_start(1000, SC_NS);
+ sc_start(20000, SC_NS);
 
  return 0;
 }

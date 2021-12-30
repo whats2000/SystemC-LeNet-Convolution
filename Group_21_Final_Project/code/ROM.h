@@ -11,7 +11,7 @@ SC_MODULE(ROM) {
  sc_in < sc_uint<16> > addr;
  sc_out < DATA_TYPE > data_out;
 
- vector < DATA_TYPE > mem = vector < DATA_TYPE > (45210, 0);
+ vector < DATA_TYPE > mem;
  void read_data();
 
  SC_CTOR(ROM)
@@ -19,6 +19,8 @@ SC_MODULE(ROM) {
   string t_b, t_c;
   DATA_TYPE t_d;
   ifstream win;
+
+  mem.resize(45210);
 
   cout << "Loading weights and input data...\n";
   // vvvvv change the path of input file here vvvvv
@@ -37,6 +39,9 @@ SC_MODULE(ROM) {
 
   win.close();
   cout << "done!\n";
+
+//  for (int i = 0; i < 45210; i++)
+//   cout << "mem[ "<< i << " ] = " << mem[i] << endl;
 
   SC_METHOD(read_data);
   sensitive << clk.pos();

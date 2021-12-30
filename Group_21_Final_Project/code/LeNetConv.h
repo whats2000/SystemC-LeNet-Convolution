@@ -26,5 +26,7 @@ SC_MODULE(Conv) {
  {
   SC_METHOD(conv_run);
   sensitive << clk.pos();
+
+  dont_initialize();
  }
 };

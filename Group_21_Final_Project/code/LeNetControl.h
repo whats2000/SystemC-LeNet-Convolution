@@ -74,5 +74,7 @@ SC_MODULE(Control) {
 
   SC_METHOD(control_run);
   sensitive << clk.pos();
+
+  dont_initialize();
  }
 };

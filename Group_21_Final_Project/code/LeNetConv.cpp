@@ -16,11 +16,21 @@ void Conv::conv_run() {
    data[i] = 0;
  }
  else {
+  cout << ">> Conv clock = " << clock_cycle << endl;
+
   if (clock_cycle >= 1 && clock_cycle <= 810) {
-   if (clock_cycle < 26)
+   //cout << ">> Conv data in = " << data_in.read() << endl;
+
+   if (clock_cycle < 26) {
     kernel[clock_cycle - 1] = data_in.read();
-   else if (clock_cycle == 26)
+
+    //cout << "kernel[ " << clock_cycle - 1 << " ] = " << kernel[clock_cycle - 1] << endl;
+   }
+   else if (clock_cycle == 26) {
     bias = data_in.read();
+
+    //cout << "bias = " << bias << endl;
+   }
   }
   else if (clock_cycle >= 27 && clock_cycle <= 810) {
    data[(clock_cycle - 27) % 140] = data_in.read();
