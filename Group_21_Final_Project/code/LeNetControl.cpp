@@ -7,6 +7,6 @@ void Control::control_run() {
   dens_0_rst.write(true);
  }
  else {
-  cout << "test" << endl;
+
  }
 }

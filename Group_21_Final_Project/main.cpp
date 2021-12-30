@@ -35,7 +35,7 @@ int sc_main(int argc, char* argv[]) {
  m_Reset(rst);
  m_Clock(clk);
  m_ROM(clk, rom_rd, rom_addr, rom_data_out);
- m_RAM(clk, rst, ram_wr, ram_addr, ram_data_out, ram_data_in);
+ m_RAM(clk, ram_wr, ram_addr, ram_data_out, ram_data_in);
  m_LeNet(clk, rst,rom_rd, rom_addr, rom_data_out, ram_wr, 
          ram_addr, ram_data_out, ram_data_in, result, out_valid
         );

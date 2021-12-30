@@ -22,7 +22,7 @@ SC_MODULE(ROM) {
 
   cout << "Loading weights and input data...\n";
   // vvvvv change the path of input file here vvvvv
-  win.open("C:\\Users\\eddie\\OneDrive\\文档\\GitHub\\SystemC_Group_21_final_project\\Group_21_Final_Project\\code\\LeNet_All_b.txt");
+  win.open("C:\\Code File\\LeNet_All_b.txt");
   for (int i = 0; i < 45210; i++) {
    win >> t_b >> t_c >> t_d;
 
