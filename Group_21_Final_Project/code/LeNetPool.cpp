@@ -1,5 +1,5 @@
 #include "LeNetPool.h"
 
-void Pool::run() {
+void Pool::pool_run() {
 
 }

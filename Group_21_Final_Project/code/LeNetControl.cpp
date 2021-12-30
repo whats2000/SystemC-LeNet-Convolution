@@ -1,6 +1,6 @@
 #include "LeNetControl.h"
 
-void Control::run() {
+void Control::control_run() {
  if (rst.read()) {
   conv_0_rst.write(true);
   pool_0_rst.write(true);

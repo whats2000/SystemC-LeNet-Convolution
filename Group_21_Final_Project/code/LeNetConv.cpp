@@ -1,6 +1,6 @@
 #include "LeNetConv.h"
 
-void Conv::run() {
+void Conv::conv_run() {
  if (rst.read()) {
   data_out.write(0);
 

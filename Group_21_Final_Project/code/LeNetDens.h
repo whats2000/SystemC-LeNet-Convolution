@@ -12,11 +12,11 @@ SC_MODULE(Dens) {
  sc_in < DATA_TYPE > data_in;
  sc_in < int > data_size;
 
- void run();
+ void dens_run();
 
  SC_CTOR(Dens)
  {
-  SC_METHOD(run);
+  SC_METHOD(dens_run);
   sensitive << clk.pos();
  }
 };

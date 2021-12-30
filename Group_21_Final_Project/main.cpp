@@ -10,7 +10,8 @@
 using namespace std;
 
 int sc_main(int argc, char* argv[]) {
- sc_signal < bool > clk, rst;
+ sc_signal < bool > clk;
+ sc_signal < bool > rst;
 
  sc_signal < bool > rom_rd;
  sc_signal < sc_uint<16> > rom_addr;

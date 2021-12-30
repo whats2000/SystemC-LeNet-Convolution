@@ -20,11 +20,11 @@ SC_MODULE(Conv) {
  DATA_TYPE kernel[25] = {};
  DATA_TYPE data[140] = {};
 
- void run();
+ void conv_run();
 
  SC_CTOR(Conv)
  {
-  SC_METHOD(run);
+  SC_METHOD(conv_run);
   sensitive << clk.pos();
  }
 };

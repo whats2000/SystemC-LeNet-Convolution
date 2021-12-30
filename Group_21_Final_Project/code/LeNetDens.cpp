@@ -1,5 +1,5 @@
 #include "LeNetDens.h"
 
-void Dens::run() {
+void Dens::dens_run() {
 
 }

@@ -12,11 +12,11 @@ SC_MODULE(Pool) {
  sc_in < DATA_TYPE > data_in;
  sc_in < int > data_size;
 
- void run();
+ void pool_run();
 
  SC_CTOR(Pool)
  {
-  SC_METHOD(run);
+  SC_METHOD(pool_run);
   sensitive << clk.pos();
  }
 };

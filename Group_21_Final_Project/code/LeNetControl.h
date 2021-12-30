@@ -47,7 +47,7 @@ SC_MODULE(Control) {
 
  int clock_cycle = 0;
 
- void run();
+ void control_run();
 
  SC_CTOR(Control)
  {
@@ -72,7 +72,7 @@ SC_MODULE(Control) {
   Dens0->data_in(dens_0_data_in);
   Dens0->data_size(dens_0_data_size);
 
-  SC_METHOD(run);
+  SC_METHOD(control_run);
   sensitive << clk.pos();
  }
 };

@@ -1,11 +1,1 @@
-﻿  LeNet.cpp
-C:\systemc-2.3.4_pub_rev_20190614\src\sysc\packages\boost\utility\string_view.hpp(1,1): warning C4819: 檔案含有無法在目前字碼頁 (950) 中表示的字元。請以 Unicode 格式儲存檔案以防止資料遺失
-  Unknown compiler version - please run the configure tests and report the results
-  LeNetDens.cpp
-C:\systemc-2.3.4_pub_rev_20190614\src\sysc\packages\boost\utility\string_view.hpp(1,1): warning C4819: 檔案含有無法在目前字碼頁 (950) 中表示的字元。請以 Unicode 格式儲存檔案以防止資料遺失
-  Unknown compiler version - please run the configure tests and report the results
-  LeNetPool.cpp
-C:\systemc-2.3.4_pub_rev_20190614\src\sysc\packages\boost\utility\string_view.hpp(1,1): warning C4819: 檔案含有無法在目前字碼頁 (950) 中表示的字元。請以 Unicode 格式儲存檔案以防止資料遺失
-  Unknown compiler version - please run the configure tests and report the results
-  正在產生程式碼...
-  Group_21_Final_Project.vcxproj -> C:\Users\eddie\OneDrive\文档\GitHub\SystemC_Group_21_final_project\Debug\Group_21_Final_Project.exe
+﻿  Group_21_Final_Project.vcxproj -> C:\Users\eddie\OneDrive\文档\GitHub\SystemC_Group_21_final_project\Debug\Group_21_Final_Project.exe
