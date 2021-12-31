@@ -19,7 +19,7 @@ void Pool::pool_run() {
    data_out.write(0);
   if (clock_cycle > (((data_size / 4)*3)+1) && clock_cycle <= (data_size * data_size) + 1) {
    for (int i = 0; i <= data_size * data_size; i++) {
-    if (((i / data_size) > 0) && ((i % data_size) = 0)) {
+    if (((i / data_size) > 0) && ((i % data_size) == 0)) {
      i = i + data_size;//switch two rows
      if (data[i / data_size][i % data_size] >= data[i / data_size][(i + 1) % data_size])
       temp_max = data[i / data_size][i % data_size];
