@@ -38,11 +38,11 @@ void Control::control_run() {
 
    conv_0_rst.write(false);
   }
-  else if (clock_cycle >= 1 && clock_cycle <= 808) {
+  else if (clock_cycle >= 1 && clock_cycle <= 810) {
 
    if (clock_cycle <= 24)
     rom_addr.write(clock_cycle + 1);
-   else
+   else if (clock_cycle <= 808)
     rom_addr.write(clock_cycle + 44426 - 25);
 
    conv_0_data_in.write(rom_data_out.read());
