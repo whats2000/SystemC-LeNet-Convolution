@@ -12,6 +12,11 @@ SC_MODULE(Pool) {
  sc_in < DATA_TYPE > data_in;
  sc_in < int > data_size;
 
+ int clock_cycle = 0;
+ DATA_TYPE temp_max = 0;
+
+ DATA_TYPE data[24][24] = {};
+
  void pool_run();
 
  SC_CTOR(Pool)
