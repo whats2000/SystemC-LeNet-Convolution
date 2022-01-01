@@ -59,6 +59,8 @@ void Control::control_run() {
 
      cout << "transfer data to Pool = " << conv_0_data_out.read() << endl;
     }
+    else
+     pool_0_data_in.write(-1);
    }
   }
   clock_cycle++;
