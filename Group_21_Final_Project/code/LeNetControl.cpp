@@ -30,24 +30,34 @@ void Control::control_run() {
   clock_cycle = 0;
  }
  else {
-  if (clock_cycle <= 808)
-   cout << "clock cycle = " << clock_cycle << endl;
+  if (clock_cycle <= 812)
+   cout << "\nclock cycle = " << clock_cycle << endl;
 
   if (clock_cycle == 0) {
    rom_addr.write(1);
 
    conv_0_rst.write(false);
   }
-  else if (clock_cycle >= 1 && clock_cycle <= 810) {
+  else if (clock_cycle >= 1 && clock_cycle <= 812) {
 
    if (clock_cycle <= 24)
     rom_addr.write(clock_cycle + 1);
    else if (clock_cycle <= 808)
     rom_addr.write(clock_cycle + 44426 - 25);
 
-   conv_0_data_in.write(rom_data_out.read());
+   if (clock_cycle <= 810) {
+    conv_0_data_in.write(rom_data_out.read());
 
-   cout << "transfer data = " << rom_data_out.read() << endl;
+    cout << "transfer data to Conv = " << rom_data_out.read() << endl;
+   }
+
+   if (clock_cycle >= 144) {
+    cout << "recieve data from Conv = " << conv_0_data_out.read() << endl;
+
+    pool_0_data_in.write(conv_0_data_out.read());
+
+    cout << "transfer data to Pool = " << conv_0_data_out.read() << endl;
+   }
   }
   clock_cycle++;
  }
