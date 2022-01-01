@@ -13,6 +13,8 @@ SC_MODULE(Pool) {
  sc_in < int > data_size;
 
  int clock_cycle = 0;
+ int clock_pool = 0;
+
  DATA_TYPE temp_max = 0;
 
  DATA_TYPE data[24][24] = {};
