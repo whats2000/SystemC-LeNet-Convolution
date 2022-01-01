@@ -54,9 +54,11 @@ void Control::control_run() {
    if (clock_cycle >= 144) {
     cout << "recieve data from Conv = " << conv_0_data_out.read() << endl;
 
-    pool_0_data_in.write(conv_0_data_out.read());
+    if (conv_0_data_out.read() >= 0) {
+     pool_0_data_in.write(conv_0_data_out.read());
 
-    cout << "transfer data to Pool = " << conv_0_data_out.read() << endl;
+     cout << "transfer data to Pool = " << conv_0_data_out.read() << endl;
+    }
    }
   }
   clock_cycle++;
