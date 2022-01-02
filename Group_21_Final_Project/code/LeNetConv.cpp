@@ -2,9 +2,9 @@
 
 void Conv::conv_run() {
  if (rst.read()) {
-  data_out.write(0);
+  data_out.write(-1);
 
-  clock_cycle = 0;
+  clock_conv = 0;
   size = 0;
   temp_sum = 0;
   bias = 0;
@@ -15,43 +15,40 @@ void Conv::conv_run() {
   for (int i = 0; i < data_size * 5; i++)
    data[i] = 0;
  }
- else {
-  //if (clock_cycle <= data_size * data_size + 26)
-   //cout << ">> Conv clock = " << clock_cycle << endl;
+ else if (data_size >= 0) {
+  //if (clock_conv <= data_size * data_size + 26)
+   //cout << ">> Conv clock = " << clock_conv << endl;
 
-  if (clock_cycle >= 1 && clock_cycle <= 26) {
+  if (clock_conv >= 1 && clock_conv <= 26) {
    //cout << ">> Conv data in = " << data_in.read() << endl;
 
-   if (clock_cycle < 26) {
-    kernel[clock_cycle - 1] = data_in.read();
+   if (clock_conv < 26) {
+    kernel[clock_conv - 1] = data_in.read();
 
-    //cout << "kernel[ " << clock_cycle - 1 << " ] = " << kernel[clock_cycle - 1] << endl;
+    //cout << "kernel[ " << clock_conv - 1 << " ] = " << kernel[clock_conv - 1] << endl;
    }
-   else if (clock_cycle == 26) {
+   else if (clock_conv == 26) {
     bias = data_in.read();
 
     //cout << "bias = " << bias << endl;
    }
   }
-  else if (clock_cycle >= 27 && clock_cycle <= data_size * data_size + 26) {
-   data[(clock_cycle - 27) % (data_size * 5)] = data_in.read();
+  else if (clock_conv >= 27 && clock_conv <= data_size * data_size + 26) {
+   data[(clock_conv - 27) % (data_size * 5)] = data_in.read();
 
-   //cout << "data[ " << clock_cycle - 27 << " ] = " << data[(clock_cycle - 27) % data_size * 5] << endl;
+   //cout << "data[ " << clock_conv - 27 << " ] = " << data[(clock_conv - 27) % (data_size * 5)] << endl;
 
-   /* 下方有錯誤，上方已經驗證 */
-   if (clock_cycle - 27 >= (5 - 1 + data_size * 4)) {
-    if ((clock_cycle - 27 - (5 - 1 + data_size * 4)) % data_size <= data_size - 5) {
+   if (clock_conv - 27 >= (5 - 1 + data_size * 4)) {
+    if ((clock_conv - 27 - (5 - 1 + data_size * 4)) % data_size <= data_size - 5) {
      for (int j = 0; j < 5; j++)
       for (int i = 0; i < 5; i++)
-       temp_sum += data[(clock_cycle - 27 + (5 - 1 + data_size * 4) + i + data_size * j) % (data_size * 5)]
+       temp_sum += data[(clock_conv - 27 + (5 - 1 + data_size * 4) + i + data_size * j) % (data_size * 5)]
        * kernel[i + 5 * j];
 
      temp_sum += bias;
 
-     
-     if (temp_sum != 0)
-      cout << "data out = " << temp_sum << endl;
-     
+     //if (temp_sum != 0)
+      //cout << "data out = " << temp_sum << endl;
 
      temp_sum >= 0 ? temp_sum : temp_sum = 0;
 
@@ -60,7 +57,9 @@ void Conv::conv_run() {
     else
      data_out.write(-1);
    }
-  }
-  clock_cycle++;
+  }   
+  clock_conv++;
  }
+ else
+  data_out.write(-1);
 }

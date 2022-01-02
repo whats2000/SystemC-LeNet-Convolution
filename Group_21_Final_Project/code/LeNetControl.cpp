@@ -13,17 +13,17 @@ void Control::control_run() {
   output_valid.write(false);
 
   // connect to Conv Submodule 0
-  conv_0_data_in.write(0);
+  conv_0_data_in.write(-1);
   conv_0_data_size.write(28);
   conv_0_rst.write(true);
 
   // connect to Pooling Submodule 0
-  pool_0_data_in.write(0);
+  pool_0_data_in.write(-1);
   pool_0_data_size.write(24);
   pool_0_rst.write(true);
 
   // connect to Dense Submodule 0
-  dens_0_data_in.write(0);
+  dens_0_data_in.write(-1);
   dens_0_data_size.write(256);
   dens_0_rst.write(true);
 
@@ -51,10 +51,14 @@ void Control::control_run() {
     cout << "transfer data to Conv = " << rom_data_out.read() << endl;
    }
 
-   if (clock_cycle >= 144) {
+   if (clock_cycle == 143)
+    pool_0_rst.write(false);
+   else if (clock_cycle >= 144) {
     cout << "recieve data from Conv = " << conv_0_data_out.read() << endl;
 
     if (conv_0_data_out.read() >= 0) {
+     
+
      pool_0_data_in.write(conv_0_data_out.read());
 
      cout << "transfer data to Pool = " << conv_0_data_out.read() << endl;

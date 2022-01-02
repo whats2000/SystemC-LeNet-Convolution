@@ -12,7 +12,7 @@ SC_MODULE(Conv) {
  sc_in < DATA_TYPE > data_in;
  sc_in < int > data_size;
 
- int clock_cycle = 0;
+ int clock_conv = 0;
  int size = 0;
 
  DATA_TYPE temp_sum = 0;
