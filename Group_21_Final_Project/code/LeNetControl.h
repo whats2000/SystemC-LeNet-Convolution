@@ -46,6 +46,7 @@ SC_MODULE(Control) {
  Dens* Dens0;
 
  int clock_cycle = 0;
+ int stage = 0;
 
  void control_run();
 
