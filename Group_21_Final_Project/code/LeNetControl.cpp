@@ -27,6 +27,11 @@ void Control::control_run() {
   dens_0_data_size.write(256);
   dens_0_rst.write(true);
 
+  // connect to Conv Submodule 1
+  conv_1_data_in.write(-1);
+  conv_1_data_size.write(12);
+  conv_1_rst.write(true);
+
   clock_cycle = 0;
   stage = 0;
  }
@@ -104,6 +109,42 @@ void Control::control_run() {
     }
    }
    clock_cycle++;
+  }
+  /* =============== 2st Conv =============== */
+  if (stage_outside <= 15) {
+   if (stage_inside <= 5) {
+    if (stage_inside == 0)
+     ram_wr.write(true);
+
+    if (clock_cycle >= (1000 + stage_inside * 1169) && clock_cycle <= (1168 + stage * 1169)) {
+     if (clock_cycle == (1000 + stage_inside * 1169))
+      ram_addr.write(0);
+     else if (clock_cycle >= (1001 + stage_inside * 1169) && clock_cycle <= (1143 + stage * 1169)) {
+      ram_addr.write(clock_cycle - 1000 - stage_outside * 2014);
+      conv_1_data_in.write(ram_data_out.read());
+     }
+     else if (clock_cycle >= (1144 + stage_inside * 1169) && clock_cycle <= (1168 + stage_inside * 1169))
+      if (clock_cycle == 1144 + stage_inside * 1169)
+       rom_addr.write(clock_cycle - stage_inside * 1169 - 988 + stage_inside * 25);
+      else if (clock_cycle >= (1145 + stage_inside * 1169) && clock_cycle <= (1168 + stage_inside * 1169)) {
+       rom_addr.write(clock_cycle - stage_inside * 1169 - 988 + stage_inside * 25);
+       conv_1_data_in.write(rom_data_out.read());
+      }
+     stage_inside++;
+
+    }
+    if (clock_cycle == (2013 + stage_outside * 2014))
+     rom_addr.write(clock_cycle - stage_outside * 2014 + 2013 * stage_outside);
+    else if (clock_cycle == (2014 + stage_outside * 2014))
+     conv_1_data_in.write(rom_data_out.read());
+
+    stage_outside++;
+
+
+
+   }
+
+
   }
  }
 }
