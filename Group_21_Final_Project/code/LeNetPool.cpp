@@ -9,7 +9,7 @@ void Pool::pool_run() {
   for (int i = 0; i < 48; i++)
    data[i] = 0;
  }
- else if (data_in.read() >= 0 && data_size != 0) {
+ else if (data_in.read() >= 0 && data_size > 0) {
   if (clock_pool < data_size * data_size)
    cout << ">> pool clock = " << clock_pool << endl;
 

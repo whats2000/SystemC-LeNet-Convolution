@@ -5,7 +5,7 @@ void Control::control_run() {
   rom_rd.write(true);
   rom_addr.write(0);
 
-  ram_wr.write(false);
+  ram_wr.write(1);
   ram_addr.write(0);
   ram_data_in.write(0);
 
@@ -76,7 +76,7 @@ void Control::control_run() {
     }
 
     if (clock_cycle == (173 + 815 * stage)) {
-     ram_wr.write(true);
+     ram_wr.write(0);
      if (stage == 0)
       ram_addr.write(0);
     }
@@ -91,7 +91,7 @@ void Control::control_run() {
       ram_addr.write(ram_addr.read() + 1);
 
       if (clock_cycle == (814 + 815 * stage)) {
-       ram_wr.write(false);
+       ram_wr.write(1);
 
        pool_0_rst.write(true);
        pool_0_data_in.write(-1);
