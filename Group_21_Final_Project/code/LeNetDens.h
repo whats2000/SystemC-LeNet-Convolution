@@ -12,6 +12,13 @@ SC_MODULE(Dens) {
  sc_in < DATA_TYPE > data_in;
  sc_in < int > data_size;
 
+ int kernel_count = 0;
+ int clock_dens = 0;
+ int stage = 0;
+
+ DATA_TYPE temp_sum = 0;
+ DATA_TYPE data[256] = {};
+
  void dens_run();
 
  SC_CTOR(Dens)
