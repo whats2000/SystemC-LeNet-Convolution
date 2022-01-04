@@ -47,6 +47,9 @@ void Dens::dens_run() {
 
      temp_sum += data_in.read();
 
+     if (data_size != 84)
+      temp_sum >= 0 ? temp_sum : temp_sum = 0;
+
      data_out.write(temp_sum);
 
      stage++;
