@@ -16,7 +16,7 @@ void Conv::conv_run() {
    data[i] = 0;
  }
  else if (data_size > 0) {
-  //if (clock_conv <= data_size * data_size + 26)
+  //if (data_size == 12 && clock_conv <= data_size * data_size + 26)
    //cout << ">> Conv clock = " << clock_conv << endl;
 
   if (clock_conv >= 1 && clock_conv <= 26) {

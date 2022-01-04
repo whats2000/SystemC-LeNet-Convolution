@@ -29,9 +29,15 @@ void Control::control_run() {
 
   clock_cycle = 0;
   stage = 0;
+  stage_inside = 0;
+  stage_outside = 0;
+  count = 0;
+
+ for (int i = 0; i < 256; i++)
+  temp_data[i] = 0;
  }
  else {
-  if (clock_cycle >= 4890 && clock_cycle <= 6000)
+  if (clock_cycle >= 4890 && clock_cycle <= 5070)
    cout << "\nclock cycle = " << clock_cycle << endl;
 
   /* =============== 1st Conv =============== */
@@ -106,10 +112,13 @@ void Control::control_run() {
     }
    }
   }
+
   /* =============== 2st Conv =============== */
   else if (clock_cycle >= 4890) {
    if (clock_cycle == (4890)) {
-    rom_addr.write(156);
+    count = 0;
+
+    rom_addr.write(157);
     ram_wr.write(1);
 
     conv_0_rst.write(false);
@@ -119,14 +128,44 @@ void Control::control_run() {
      pool_0_data_size.write(8);
     }
    }
-   else if ((clock_cycle >= (1 + 4890)) && (clock_cycle <= (814 + 4890))) {
-    if (clock_cycle <= (24 + 4890))
+   else if ((clock_cycle >= (1 + 4890)) && (clock_cycle <= (814 - 640 + 4890))) {
+    if (clock_cycle <= (23 + 4890))
      rom_addr.write(clock_cycle + 1 - 4890 + 156);
+
+    else if (clock_cycle >= (25 + 4890) && clock_cycle <= (808 - 640 + 4890))
+     ram_addr.write(clock_cycle - 25 - 4890);
 
     if (clock_cycle <= (25 + 4890)) {
      conv_0_data_in.write(rom_data_out.read());
 
      cout << "transfer data to Conv = " << rom_data_out.read() << endl;
+    }
+    else if (clock_cycle == (26 + 4890)) {
+     conv_0_data_in.write(0);
+
+     cout << "transfer data to Conv = 0" << endl;
+    }
+    else if (clock_cycle <= (810 - 640 + 4890)) {
+     conv_0_data_in.write(ram_data_out.read());
+
+     cout << "transfer data to Conv = " << ram_data_out.read() << endl;
+    }
+
+    if (clock_cycle == (78 + 4890))
+     pool_0_rst.write(false);
+
+    else if (clock_cycle >= (79 + 4890)) {
+     if (clock_cycle <= (812 - 640 + 4890)) {
+      cout << "recieve data from Conv = " << conv_0_data_out.read() << endl;
+
+      if (conv_0_data_out.read() >= 0) {
+       temp_data[count] += conv_0_data_out.read();
+
+       cout << "count = " << count << endl;
+
+       count++;
+      }
+     }
     }
    }
   }

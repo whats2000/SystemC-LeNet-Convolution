@@ -49,6 +49,9 @@ SC_MODULE(Control) {
  int stage = 0;
  int stage_inside = 0;
  int stage_outside = 0;
+ int count = 0;
+
+ DATA_TYPE temp_data[256] = {};
 
  void control_run();
 
