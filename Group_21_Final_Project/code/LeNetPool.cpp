@@ -11,12 +11,12 @@ void Pool::pool_run() {
  }
  else if (data_in.read() >= 0 && data_size > 0) {
   if (clock_pool < data_size * data_size)
-   cout << ">> pool clock = " << clock_pool << endl;
+   //cout << ">> pool clock = " << clock_pool << endl;
 
   if (clock_pool < data_size * data_size) {
    data[clock_pool % (data_size * 2)] = data_in.read();
 
-   cout << "data[ " << clock_pool << " ] = " << data[clock_pool % (data_size * 2)] << endl;
+   //cout << "data[ " << clock_pool << " ] = " << data[clock_pool % (data_size * 2)] << endl;
 
    if (clock_pool >= data_size + 2 - 1) {
     if ((clock_pool - (data_size + 2 - 1)) % data_size <= data_size - 2 /* 首次抓取不做運算 */
@@ -34,7 +34,7 @@ void Pool::pool_run() {
      if (temp_max < data[clock_pool % (data_size * 2) - data_size - 1])
       temp_max = data[clock_pool % (data_size * 2) - data_size - 1];
 
-     cout << "max = " << temp_max << endl;
+     //cout << "max = " << temp_max << endl;
 
      data_out.write(temp_max);
     }

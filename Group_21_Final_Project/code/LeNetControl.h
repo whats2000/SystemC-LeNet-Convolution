@@ -41,14 +41,7 @@ SC_MODULE(Control) {
  sc_signal < int > dens_0_data_size;
  sc_signal < bool > dens_0_rst;
 
- // connect to Conv Submodule 1
- sc_signal < DATA_TYPE > conv_1_data_out;
- sc_signal < DATA_TYPE > conv_1_data_in;
- sc_signal < int > conv_1_data_size;
- sc_signal < bool > conv_1_rst;
-
  Conv* Conv0;
- Conv* Conv1;
  Pool* Pool0;
  Dens* Dens0;
 
@@ -81,13 +74,6 @@ SC_MODULE(Control) {
   Dens0->data_out(dens_0_data_out);
   Dens0->data_in(dens_0_data_in);
   Dens0->data_size(dens_0_data_size);
-
-  Conv1 = new Conv("Conv_0");
-  Conv1->clk(clk);
-  Conv1->rst(conv_1_rst);
-  Conv1->data_out(conv_1_data_out);
-  Conv1->data_in(conv_1_data_in);
-  Conv1->data_size(conv_1_data_size);
 
   SC_METHOD(control_run);
   sensitive << clk.pos();
