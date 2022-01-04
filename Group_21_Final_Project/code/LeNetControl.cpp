@@ -38,7 +38,7 @@ void Control::control_run() {
     temp_data[i][j] = 0;
  }
  else {
-  if (clock_cycle >= 4890 && clock_cycle <= 21593)
+  if (clock_cycle >= 4890 && clock_cycle <= 22666)
    cout << "\nclock cycle = " << clock_cycle << endl;
 
   /* =============== 1st Conv and 1st Pool =============== */
@@ -131,14 +131,13 @@ void Control::control_run() {
 
       if (clock_cycle == 4890 + 174 * stage_in + 6 * 174 * stage_out) {
        conv_0_data_size.write(12);
-       pool_0_data_size.write(8);
       }
      }
      else if ((clock_cycle >= (1 + 4890 + 174 * stage_in + 6 * 174 * stage_out))
       && (clock_cycle <= (814 - 640 + 4890 + 174 * stage_in + 6 * 174 * stage_out))) {
       if (clock_cycle <= (23 + 4890 + 174 * stage_in + 6 * 174 * stage_out))
-       rom_addr.write(clock_cycle - 4890 - 174 * stage_in - 6 * 174 * stage_out 
-        + 157 + 25 * stage_in 
+       rom_addr.write(clock_cycle - 4890 - 174 * stage_in - 6 * 174 * stage_out
+        + 157 + 25 * stage_in
         + 25 * 6 * stage_out + stage_out);
 
       else if (clock_cycle >= (25 + 4890 + 174 * stage_in + 6 * 174 * stage_out)
@@ -148,8 +147,8 @@ void Control::control_run() {
       // After calculate 6 kernel * data fetch bias
       if (stage_in == 5) {
        if (clock_cycle == (23 + 4890 + 174 * stage_in + 6 * 174 * stage_out + 1)) {
-        rom_addr.write(clock_cycle - 4890 - 174 * stage_in - 6 * 174 * stage_out 
-         + 157 + 25 * stage_in 
+        rom_addr.write(clock_cycle - 4890 - 174 * stage_in - 6 * 174 * stage_out
+         + 157 + 25 * stage_in
          + 25 * 6 * stage_out + stage_out);
        }
        else if (clock_cycle == (23 + 4890 + 174 * stage_in + 6 * 174 * stage_out + 1 + 2)) {
@@ -216,6 +215,50 @@ void Control::control_run() {
   }
 
   /* =============== 2nd Pool =============== */
+  else if (clock_cycle == 21593) {
+   stage = 0;
+
+   pool_0_data_size.write(8);
+
+   ram_wr.write(0);
+  }
+  else if (clock_cycle >= 21594 && clock_cycle <= 22665) {
+   if (stage < 16) {
+    if (clock_cycle == (21594 + stage * 67)) {
+     ram_addr.write(0 + stage);
+
+     pool_0_rst.write(false);
+    }
+    else if ((clock_cycle >= 21595 + stage * 67) && (clock_cycle <= 21595 + 65 + stage * 67)) {
+     if (clock_cycle <= 21595 + 63 + stage * 67)
+      pool_0_data_in.write(temp_data[stage][clock_cycle - 21595 - stage * 67]);
+
+     if (pool_0_data_out.read() >= 0) {
+      cout << "recieve data from Pool = " << pool_0_data_out.read() << endl;
+
+      ram_data_in.write(pool_0_data_out.read());
+
+      ram_addr.write(ram_addr.read() + 16);
+     }
+
+     if (clock_cycle == 21595 + 65 + stage * 67) {
+      pool_0_rst.write(true);
+      pool_0_data_in.write(-1);
+
+      cout << "reset pool unit" << endl;
+
+      stage++;
+     }
+
+     if (clock_cycle == 21595 + 65 + 15 * 67) {
+      ram_wr.write(1);
+     }
+    }
+   }
+  }
+
+  /* =============== 1st Dense ============== */
+
 
   clock_cycle++;
  }
