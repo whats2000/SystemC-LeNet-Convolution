@@ -38,7 +38,7 @@ void Control::control_run() {
     temp_data[i][j] = 0;
  }
  else {
-  if (clock_cycle >= 4890 && clock_cycle <= 22666)
+  if (clock_cycle >= 22666 && clock_cycle <= 22666)
    cout << "\nclock cycle = " << clock_cycle << endl;
 
   /* =============== 1st Conv and 1st Pool =============== */
@@ -198,7 +198,7 @@ void Control::control_run() {
       if (clock_cycle == (814 - 640 + 4890 + 174 * stage_in + 6 * 174 * stage_out - 2)) {
        conv_0_rst.write(true);
 
-       cout << "reset conv unit" << endl;
+       //cout << "reset conv unit" << endl;
 
        rom_addr.write(rom_addr.read() + 1);
 
@@ -234,7 +234,7 @@ void Control::control_run() {
       pool_0_data_in.write(temp_data[stage][clock_cycle - 21595 - stage * 67]);
 
      if (pool_0_data_out.read() >= 0) {
-      cout << "recieve data from Pool = " << pool_0_data_out.read() << endl;
+      //cout << "recieve data from Pool = " << pool_0_data_out.read() << endl;
 
       ram_data_in.write(pool_0_data_out.read());
 
@@ -245,20 +245,33 @@ void Control::control_run() {
       pool_0_rst.write(true);
       pool_0_data_in.write(-1);
 
-      cout << "reset pool unit" << endl;
+      //cout << "reset pool unit" << endl;
 
       stage++;
      }
 
      if (clock_cycle == 21595 + 65 + 15 * 67) {
       ram_wr.write(1);
+
+      ram_addr.write(0);
      }
     }
    }
   }
 
   /* =============== 1st Dense ============== */
+  else if (clock_cycle == 22666) {
+  dens_0_data_size.write(256);
+   dens_0_rst.write(false);
 
+   rom_addr.write(2572);
+  }
+  else if (clock_cycle >= 22667 && clock_cycle <= 22667 + 258) {
+  if (clock_cycle <= 22667 + 255)
+   ram_addr.write(ram_addr.read() + 1);
+
+   dens_0_data_in.write(ram_data_out.read());
+  }
 
   clock_cycle++;
  }

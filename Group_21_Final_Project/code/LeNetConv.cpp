@@ -26,7 +26,7 @@ void Conv::conv_run() {
     kernel[clock_conv - 1] = data_in.read();
 
     //if (data_size == 12)
-     cout << "kernel[ " << clock_conv - 1 << " ] = " << kernel[clock_conv - 1] << endl;
+     //cout << "kernel[ " << clock_conv - 1 << " ] = " << kernel[clock_conv - 1] << endl;
    }
    else if (clock_conv == 26) {
     bias = data_in.read();
