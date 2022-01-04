@@ -40,7 +40,7 @@ void Control::control_run() {
    cout << "\nclock cycle = " << clock_cycle << endl;
 
   /* =============== 1st Conv =============== */
-  if (stage < 6) {
+  if (clock_cycle <= 4889) {
    if (clock_cycle == (0 + 815 * stage)) {
     rom_addr.write(1);
 

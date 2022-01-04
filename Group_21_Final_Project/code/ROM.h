@@ -24,7 +24,7 @@ SC_MODULE(ROM) {
 
   cout << "Loading weights and input data...\n";
   // vvvvv change the path of input file here vvvvv
-  win.open("C:\\Code File\\LeNet_All_b.txt");
+  win.open("code\\LeNet_All_b.txt");
   for (int i = 0; i < 45210; i++) {
    win >> t_b >> t_c >> t_d;
 
@@ -35,15 +35,17 @@ SC_MODULE(ROM) {
 #else
    mem[i] = t_d;
 #endif
+
+   //cout << "mem[ " << i << " ] = " << mem[i] << endl;
   }
 
   win.close();
   cout << "done!\n";
 
-//  for (int i = 0; i < 45210; i++)
-//   cout << "mem[ "<< i << " ] = " << mem[i] << endl;
+  //  for (int i = 0; i < 45210; i++)
+  //   cout << "mem[ "<< i << " ] = " << mem[i] << endl;
 
   SC_METHOD(read_data);
   sensitive << clk.pos();
-  }
- };
+ }
+};
