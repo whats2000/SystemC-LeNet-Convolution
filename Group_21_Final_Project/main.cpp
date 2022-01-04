@@ -26,7 +26,7 @@ int sc_main(int argc, char* argv[]) {
  sc_signal < DATA_TYPE > result;
 
  Reset m_Reset("m_Reset", 10);
- Clock m_Clock("m_Clock", 5, 20000);
+ Clock m_Clock("m_Clock", 5, 80000);
  ROM m_ROM("m_ROM");
  RAM m_RAM("m_RAM");
  LeNet m_LeNet("m_LeNet");
@@ -41,7 +41,7 @@ int sc_main(int argc, char* argv[]) {
         );
  m_Monitor(clk, rst, result, out_valid);
 
- sc_start(200000, SC_NS);
+ sc_start(800000, SC_NS);
 
  return 0;
 }

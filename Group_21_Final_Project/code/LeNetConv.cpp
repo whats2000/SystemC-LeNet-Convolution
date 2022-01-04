@@ -31,7 +31,7 @@ void Conv::conv_run() {
    else if (clock_conv == 26) {
     bias = data_in.read();
 
-    cout << "bias = " << bias << endl;
+    //cout << "bias = " << bias << endl;
    }
   }
   else if (clock_conv >= 27 && clock_conv <= data_size * data_size + 26) {
