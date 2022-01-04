@@ -261,17 +261,36 @@ void Control::control_run() {
 
   /* =============== 1st Dense ============== */
   else if (clock_cycle == 22666) {
-  dens_0_data_size.write(256);
+   dens_0_data_size.write(256);
    dens_0_rst.write(false);
 
    rom_addr.write(2572);
   }
   else if (clock_cycle >= 22667 && clock_cycle <= 22667 + 258) {
-  if (clock_cycle <= 22667 + 255)
-   ram_addr.write(ram_addr.read() + 1);
+   if (clock_cycle <= 22667 + 255)
+    ram_addr.write(ram_addr.read() + 1);
 
    dens_0_data_in.write(ram_data_out.read());
   }
+  if (clock_cycle == 22667 + 256)
+   dens_0_data_in.write(ram_data_out.read());
+
+  else if (clock_cycle >= 22667 + 258 && clock_cycle <= 22667 + 258 + 30839 - 1) {
+   if (stage < 135) {
+    if (clock_cycle >= 22925 + 255 * (stage - 16) &&
+     clock_cycle <= 22925 + 254 + 1 + 255 * (stage - 16))
+
+     if (clock_cycle <= (22925 + 255 * (stage - 16))) {
+      rom_addr.write(rom_addr.read() + 1);
+      dens_0_data_in.write(rom_data_out.read());
+     }
+
+    if (dens_0_data_out.read() >= 0)
+     Dens1_data[stage - 16] = dens_0_data_out.read();
+    stage++;
+   }
+  }
+
 
   clock_cycle++;
  }
