@@ -36,22 +36,24 @@ void Dens::dens_run() {
 
    cout << "data[ " << clock_dens << " ] = " << data[clock_dens] << endl;
   }
-  else if ((clock_dens >= data_size * (1 + stage) + stage) && (clock_dens <= data_size * (2 + stage) + stage)) {
-   cout << "kernel[ " << clock_dens - (data_size * (1 + stage) + stage) << " ] = " << data_in.read() << endl;
-   if (clock_dens < data_size * (2 + stage) + stage)
-   temp_sum += data_in.read() * data[clock_dens - (data_size * (1 + stage) + stage)];
+  else if (stage < kernel_count) {
+   if ((clock_dens >= data_size * (1 + stage) + stage) && (clock_dens <= data_size * (2 + stage) + stage)) {
+    cout << "kernel[ " << clock_dens - (data_size * (1 + stage) + stage) << " ] = " << data_in.read() << endl;
+    if (clock_dens < data_size * (2 + stage) + stage)
+     temp_sum += data_in.read() * data[clock_dens - (data_size * (1 + stage) + stage)];
 
-   if (clock_dens == data_size * (2 + stage) + stage) {
-    cout << "bias = " << data_in.read() << endl;
+    if (clock_dens == data_size * (2 + stage) + stage) {
+     cout << "bias = " << data_in.read() << endl;
 
-    temp_sum += data_in.read();
+     temp_sum += data_in.read();
 
-    data_out.write(temp_sum);
+     data_out.write(temp_sum);
 
-    stage++;
+     stage++;
+    }
+    else
+     data_out.write(-1);
    }
-   else
-    data_out.write(-1);
   }
  }
 }
