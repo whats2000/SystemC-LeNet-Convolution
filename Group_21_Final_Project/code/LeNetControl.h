@@ -53,6 +53,7 @@ SC_MODULE(Control) {
 
  DATA_TYPE temp_bias = 0;
  DATA_TYPE temp_data[16][64] = {};
+ DATA_TYPE temp_dens_data[120];
 
  void control_run();
 
