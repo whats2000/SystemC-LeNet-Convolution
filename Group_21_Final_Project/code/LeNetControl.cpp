@@ -38,8 +38,8 @@ void Control::control_run() {
     temp_data[i][j] = 0;
  }
  else {
-  if (clock_cycle >= 22666 && clock_cycle <= 22666)
-   cout << "\nclock cycle = " << clock_cycle << endl;
+  //if (clock_cycle >= 22666 && clock_cycle <= 22666)
+   //cout << "\nclock cycle = " << clock_cycle << endl;
 
   /* =============== 1st Conv and 1st Pool =============== */
   if (clock_cycle <= 4889) {
@@ -359,7 +359,7 @@ void Control::control_run() {
 
     ram_addr.write(count);
 
-    cout << "data[ " << count << " ] = " << dens_0_data_out.read() << endl;
+    //cout << "data[ " << count << " ] = " << dens_0_data_out.read() << endl;
 
     if (count == 83) {
      dens_0_rst.write(true);
@@ -376,51 +376,63 @@ void Control::control_run() {
 
   /* =============== 3rd Dense ============== */
   else if (clock_cycle == 64052) {
-  dens_0_data_size.write(84);
-  dens_0_rst.write(false);
+   dens_0_data_size.write(84);
+   dens_0_rst.write(false);
 
-  ram_wr.write(1);
-  ram_addr.write(0);
+   ram_wr.write(1);
+   ram_addr.write(0);
 
-  rom_rd.write(true);
-  rom_addr.write(43576);
+   rom_rd.write(true);
+   rom_addr.write(43576);
 
-  count = 0;
+   count = 0;
   }
   else if (clock_cycle >= 64053 && clock_cycle <= 64053 + 83 + 850 + 2) {
-  if (clock_cycle <= 64053 + 83)
-   ram_addr.write(ram_addr.read() + 1);
-  if (clock_cycle > 64053 + 83 && clock_cycle <= 64053 + 83 + 850) {
-   rom_addr.write(rom_addr.read() + 1);
-  }
-
-  if (clock_cycle <= 64053 + 83) {
-   //cout << "Recieve data from ram = " << ram_data_out.read() << endl;
-
-   dens_0_data_in.write(ram_data_out.read());
-  }
-  else if (clock_cycle <= 64053 + 83 + 850) {
-   //cout << "Recieve data from ram = " << rom_data_out.read() << endl;
-
-   dens_0_data_in.write(rom_data_out.read());
-  }
-
-  if (dens_0_data_out.read() != -1) {
-   cout << "recieve data from dense = " << dens_0_data_out.read() << endl;
-
-   //cout << "data[ " << count << " ] = " << dens_0_data_out.read() << endl;
-
-   if (count == 9) {
-    dens_0_rst.write(true);
-
-    dens_0_data_in.write(-1);
+   if (clock_cycle <= 64053 + 83)
+    ram_addr.write(ram_addr.read() + 1);
+   if (clock_cycle > 64053 + 83 && clock_cycle <= 64053 + 83 + 850) {
+    rom_addr.write(rom_addr.read() + 1);
    }
 
-   if (clock_cycle == 64053 + 83 + 850 + 2) {
-    ram_wr.write(1);
+   if (clock_cycle <= 64053 + 83) {
+    //cout << "Recieve data from ram = " << ram_data_out.read() << endl;
+
+    dens_0_data_in.write(ram_data_out.read());
    }
-   count++;
+   else if (clock_cycle <= 64053 + 83 + 850) {
+    //cout << "Recieve data from ram = " << rom_data_out.read() << endl;
+
+    dens_0_data_in.write(rom_data_out.read());
+   }
+
+   if (dens_0_data_out.read() != -1) {
+    //cout << "recieve data from dense = " << dens_0_data_out.read() << endl;
+
+    temp_data[0][count] = dens_0_data_out.read();
+
+    //output_valid.write(true);
+
+    //result.write(dens_0_data_out.read());
+
+    //cout << "data[ " << count << " ] = " << dens_0_data_out.read() << endl;
+
+    if (count == 9) {
+     dens_0_rst.write(true);
+
+     dens_0_data_in.write(-1);
+    }
+
+    if (clock_cycle == 64053 + 83 + 850 + 2) {
+     ram_wr.write(1);
+    }
+    count++;
+   }
   }
+
+  /* =============== Output================== */
+  else if (clock_cycle >= 64989 && clock_cycle <= 64998) {
+   output_valid.write(true);
+   result.write(temp_data[0][clock_cycle - 64989]);
   }
 
   clock_cycle++;

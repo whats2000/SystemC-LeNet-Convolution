@@ -38,14 +38,14 @@ void Dens::dens_run() {
    if ((clock_dens >= data_size * (1 + stage) + stage) && (clock_dens <= data_size * (2 + stage) + stage)) {
 
     if (clock_dens < data_size * (1 + stage) + stage + data_size) {
-     cout << "kernel[ " << clock_dens - (data_size * (1 + stage) + stage) << " ] = " << data_in.read() << endl;
+     //cout << "kernel[ " << clock_dens - (data_size * (1 + stage) + stage) << " ] = " << data_in.read() << endl;
      temp_sum += data_in.read() * data[clock_dens - (data_size * (1 + stage) + stage)];
     }
 
     if (clock_dens == data_size * (1 + stage) + stage + data_size) {
-     cout << "bias = " << data_in.read() << endl;
+     //cout << "bias = " << data_in.read() << endl;
 
-     cout << "current stage = " << stage << endl;
+     //cout << "current stage = " << stage << endl;
 
      temp_sum += data_in.read();
 
@@ -53,6 +53,8 @@ void Dens::dens_run() {
       temp_sum >= 0 ? temp_sum : temp_sum = 0;
 
      data_out.write(temp_sum);
+
+     temp_sum = 0;
 
      stage++;
     }
