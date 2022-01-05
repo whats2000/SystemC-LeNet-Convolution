@@ -217,6 +217,7 @@ void Control::control_run() {
   /* =============== 2nd Pool =============== */
   else if (clock_cycle == 21593) {
    stage = 0;
+   count = 0;
 
    pool_0_data_size.write(8);
 
@@ -225,6 +226,8 @@ void Control::control_run() {
   else if (clock_cycle >= 21594 && clock_cycle <= 22665) {
    if (stage < 16) {
     if (clock_cycle == (21594 + stage * 67)) {
+     count = 0;
+
      ram_addr.write(0 + stage);
 
      pool_0_rst.write(false);
@@ -238,22 +241,18 @@ void Control::control_run() {
 
       ram_data_in.write(pool_0_data_out.read());
 
-      ram_addr.write(ram_addr.read() + 16);
+      ram_addr.write(stage + 16 * count);
+
+      count++;
      }
 
      if (clock_cycle == 21595 + 65 + stage * 67) {
       pool_0_rst.write(true);
       pool_0_data_in.write(-1);
 
-      //cout << "reset pool unit" << endl;
+      cout << "reset pool unit" << endl;
 
       stage++;
-     }
-
-     if (clock_cycle == 21595 + 65 + 15 * 67) {
-      ram_wr.write(1);
-
-      ram_addr.write(0);
      }
     }
    }
@@ -264,32 +263,53 @@ void Control::control_run() {
    dens_0_data_size.write(256);
    dens_0_rst.write(false);
 
-   rom_addr.write(2572);
+   ram_wr.write(1);
+   ram_addr.write(0);
+
+   rom_rd.write(true);
+
+   count = 0;
   }
-  else if (clock_cycle >= 22667 && clock_cycle <= 22667 + 258) {
-   if (clock_cycle <= 22667 + 255)
+  else if (clock_cycle >= 22667 && clock_cycle <= 22667 + 255 + 30840 + 2) {
+   if (clock_cycle <= 22667 + 254)
     ram_addr.write(ram_addr.read() + 1);
+   if (clock_cycle > 22667 + 254 && clock_cycle <= 22667 + 254 + 30840) {
+    rom_addr.write(rom_addr.read() + 1);
+   }
 
-   dens_0_data_in.write(ram_data_out.read());
-  }
-  if (clock_cycle == 22667 + 256)
-   dens_0_data_in.write(ram_data_out.read());
+   if (clock_cycle <= 22667 + 255) {
+    //cout << "Recieve data from ram = " << ram_data_out.read() << endl;
 
-  else if (clock_cycle >= 22667 + 258 && clock_cycle <= 22667 + 258 + 30839 - 1) {
-   if (stage < 135) {
-    if (clock_cycle >= 22925 + 255 * (stage - 16) &&
-     clock_cycle <= 22925 + 254 + 1 + 255 * (stage - 16))
+    dens_0_data_in.write(ram_data_out.read());
 
-     if (clock_cycle <= (22925 + 255 * (stage - 16))) {
-      rom_addr.write(rom_addr.read() + 1);
-      dens_0_data_in.write(rom_data_out.read());
-     }
+    if (clock_cycle == 22667 + 255) {
+     ram_wr.write(0);
+     ram_addr.write(0);
+    }
+   }
+   else if (clock_cycle <= 22667 + 255 + 30840) {
+    //cout << "Recieve data from ram = " << rom_data_out.read() << endl;
 
-    if (dens_0_data_out.read() >= 0)
-     Dens1_data[stage - 16] = dens_0_data_out.read();
-    stage++;
+    dens_0_data_in.write(rom_data_out.read());
+   }
+
+   if (dens_0_data_out.read() >= 0) {
+    cout << "recieve data from dense = " << dens_0_data_out.read() << endl;
+
+    ram_data_in.write(dens_0_data_out.read());
+
+    ram_addr.write(count);
+
+    //cout << "data[ " << count << " ] = " << dens_0_data_out.read() << endl;
+
+    if (count == 119)
+     pool_0_rst.write(true);
+
+    count++;
    }
   }
+
+  /* =============== 2nd Dense ============== */
 
 
   clock_cycle++;
