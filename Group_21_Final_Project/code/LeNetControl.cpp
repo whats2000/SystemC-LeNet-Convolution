@@ -376,14 +376,14 @@ void Control::control_run() {
 
   /* =============== 3rd Dense ============== */
   else if (clock_cycle == 64051) {
-  dens_0_data_size.write(256);
+  dens_0_data_size.write(84);
   dens_0_rst.write(false);
 
   ram_wr.write(1);
   ram_addr.write(0);
 
   rom_rd.write(true);
-  rom_addr.write(2572);
+  rom_addr.write(43576);
 
   count = 0;
   }
